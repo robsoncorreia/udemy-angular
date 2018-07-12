@@ -3,8 +3,8 @@ import { AboutComponent } from './about/about.component';
 import { HomeComponent } from './home/home.component';
 import { Routes } from '@angular/router';
 import { RestaurantDetailComponent } from './restaurant-detail/restaurant-detail.component';
-import { MenuComponent } from "app/restaurant-detail/menu/menu.component";
-import { ReviewsComponent } from "app/restaurant-detail/reviews/reviews.component";
+import { MenuComponent } from 'app/restaurant-detail/menu/menu.component';
+import { ReviewsComponent } from 'app/restaurant-detail/reviews/reviews.component';
 
 
 export const ROUTES: Routes = [
