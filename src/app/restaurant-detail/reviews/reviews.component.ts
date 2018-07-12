@@ -9,7 +9,8 @@ import { Review } from "app/restaurants/restaurant/review.model";
   templateUrl: './reviews.component.html'
 })
 export class ReviewsComponent implements OnInit {
-  reviews: Observable<Review>;
+
+  reviews: Review[] = [];
 
   constructor(
     private restaurantsService: RestaurantsService,
@@ -17,8 +18,8 @@ export class ReviewsComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.reviews = this.restaurantsService.reviewsOfRestaurant(
+    this.restaurantsService.reviewsOfRestaurant(
       this.route.parent.snapshot.params['id']
-    );
+    ).subscribe( reviews => this.reviews = reviews);
   }
 }
