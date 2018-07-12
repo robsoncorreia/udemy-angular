@@ -6,6 +6,7 @@ import { Observable } from '../../../node_modules/rxjs/Observable';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 import { ErrorHandler } from '../app.error-handler';
+import { Review } from "app/restaurants/restaurant/review.model";
 
 @Injectable()
 export class RestaurantsService {
@@ -23,7 +24,7 @@ export class RestaurantsService {
       .map(reponse => reponse.json())
       .catch(ErrorHandler.handleError);
   }
-  reviewsOfRestaurant(id: string): Observable<any> {
+  reviewsOfRestaurant(id: string): Observable<Review> {
     return this.http
       .get(`${MEAT_API}/restaurants/${id}/reviews`)
       .map(response => response.json)
