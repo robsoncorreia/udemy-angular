@@ -4,7 +4,7 @@ import { MenuItem } from '../menu-item/menu-item.model';
 
 @Injectable()
 export class ShoppingCartService {
-  
+
   itens: CartItem[] = [];
 
   constructor() {}
