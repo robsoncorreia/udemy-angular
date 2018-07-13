@@ -1,14 +1,21 @@
 import { Component, OnInit } from '@angular/core';
+import { ShoppingCartService } from './shopping-cart.service';
 
 @Component({
   selector: 'mt-shopping-cart',
-  templateUrl: './shopping-cart.component.html'
+  templateUrl: './shopping-cart.component.html',
+  providers: [ShoppingCartService]
 })
 export class ShoppingCartComponent implements OnInit {
+  constructor(private shoppingCartService: ShoppingCartService) {}
 
-  constructor() { }
+  ngOnInit() {}
 
-  ngOnInit() {
+  items(): any {
+    return this.shoppingCartService.itens;
   }
 
+  total(): number {
+    return this.shoppingCartService.total();
+  }
 }
