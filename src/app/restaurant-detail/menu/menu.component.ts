@@ -5,13 +5,14 @@ import { MenuItem } from "app/restaurant-detail/menu-item/menu-item.model";
 import { Observable } from "rxjs/Observable";
 import { ActivatedRoute } from "@angular/router";
 
+
 @Component({
   selector: 'mt-menu',
   templateUrl: './menu.component.html'
 })
 
 export class MenuComponent implements OnInit {
-
+  
   menu: Observable<MenuItem[]>;
 
   constructor(
