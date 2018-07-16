@@ -5,29 +5,27 @@ import { MenuItem } from '../menu-item/menu-item.model';
 @Injectable()
 export class ShoppingCartService {
 
-  itens: CartItem[] = [];
-
-  constructor() {}
+  items: CartItem[] = [];
 
   clear() {
-    this.itens = [];
+    this.items = [];
   }
 
   addItem(item: MenuItem) {
-    let foundItem = this.itens.find(mItem => mItem.menuItem.id === item.id);
+    let foundItem = this.items.find(mItem => mItem.menuItem.id === item.id);
     if (foundItem) {
       foundItem.quantity += 1;
     } else {
-      this.itens.push(new CartItem(item));
+      this.items.push(new CartItem(item));
     }
   }
 
   removeItem(item: CartItem) {
-    this.itens.splice(this.itens.indexOf(item), 1);
+    this.items.splice(this.items.indexOf(item), 1);
   }
 
   total(): number {
-    return this.itens
+    return this.items
       .map(item => item.value())
       .reduce((prev, value) => prev + value, 0);
   }

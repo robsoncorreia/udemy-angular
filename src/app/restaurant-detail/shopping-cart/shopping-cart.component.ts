@@ -7,12 +7,22 @@ import { ShoppingCartService } from './shopping-cart.service';
   providers: [ShoppingCartService]
 })
 export class ShoppingCartComponent implements OnInit {
-  constructor(private shoppingCartService: ShoppingCartService) { }
+
+  public get shoppingCartService(): ShoppingCartService {
+    return this._shoppingCartService;
+  }
+
+  public set shoppingCartService(value: ShoppingCartService) {
+    this._shoppingCartService = value;
+  }
+
+  constructor(private _shoppingCartService: ShoppingCartService) { }
 
   ngOnInit() { }
 
   items(): any {
-    return this.shoppingCartService.itens;
+    let teste = this.shoppingCartService.items;
+    return teste;
   }
 
   total(): number {
