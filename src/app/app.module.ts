@@ -3,7 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, LOCALE_ID } from '@angular/core';
 import { HttpModule } from '@angular/http';
 import { RouterModule } from '@angular/router';
-import {FormsModule} from '@angular/forms';
+import { FormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
@@ -23,7 +23,8 @@ import { RestaurantsService } from './restaurants/restaurants.service';
 import { OrderComponent } from './order/order.component';
 import { InputComponent } from './shared/input/input.component';
 import { RadioComponent } from './shared/radio/radio.component';
-
+import { OrderItemsComponent } from './order/order-items/order-items.component';
+import { OrderService } from './order/order.service';
 
 @NgModule({
   declarations: [
@@ -40,8 +41,8 @@ import { RadioComponent } from './shared/radio/radio.component';
     ReviewsComponent,
     OrderComponent,
     InputComponent,
-    RadioComponent
-
+    RadioComponent,
+    OrderItemsComponent
   ],
   imports: [
     FormsModule,
@@ -49,7 +50,12 @@ import { RadioComponent } from './shared/radio/radio.component';
     HttpModule,
     RouterModule.forRoot(ROUTES)
   ],
-  providers: [{ provide: LOCALE_ID, useValue: 'pt-BR' }, ShoppingCartService, RestaurantsService],
+  providers: [
+    { provide: LOCALE_ID, useValue: 'pt-BR' },
+    OrderService,
+    ShoppingCartService,
+    RestaurantsService
+  ],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {}

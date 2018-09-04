@@ -3,8 +3,7 @@ import { ShoppingCartService } from './shopping-cart.service';
 
 @Component({
   selector: 'mt-shopping-cart',
-  templateUrl: './shopping-cart.component.html',
-  providers: [ShoppingCartService]
+  templateUrl: './shopping-cart.component.html'
 })
 export class ShoppingCartComponent implements OnInit {
 
