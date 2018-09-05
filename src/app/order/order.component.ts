@@ -8,13 +8,22 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './order.component.html'
 })
 export class OrderComponent implements OnInit {
+  private _delivery = 8;
+
+  public get delivery() {
+    return this._delivery;
+  }
+  public set delivery(value) {
+    this._delivery = value;
+  }
   paymentOptions: RadioOption[] = [
     { label: 'Dinheiro', value: 'MON' },
     { label: 'Cartão de Débito', value: 'DEB' },
     { label: 'Cartão Refeição', value: 'REF' }
   ];
 
-  constructor(private _orderService: OrderService) {}
+  constructor(private _orderService: OrderService ) {}
+
 
   ngOnInit() {}
 
@@ -25,10 +34,15 @@ export class OrderComponent implements OnInit {
   increaseQty(item: CartItem) {
     this._orderService.increaseQty(item);
   }
+
   decreaseQty(item: CartItem) {
     this._orderService.decreaseQty(item);
   }
+
   remove(item: CartItem) {
     this._orderService.removeItem(item);
+  }
+  itemsValue():number{
+    return this._orderService.itemsValue();
   }
 }
