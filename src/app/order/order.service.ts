@@ -1,6 +1,6 @@
-import { CartItem } from './../restaurant-detail/shopping-cart/cart-item.model';
-import { ShoppingCartService } from './../restaurant-detail/shopping-cart/shopping-cart.service';
-import { Injectable } from '@angular/core';
+import { CartItem } from "./../restaurant-detail/shopping-cart/cart-item.model";
+import { ShoppingCartService } from "./../restaurant-detail/shopping-cart/shopping-cart.service";
+import { Injectable } from "@angular/core";
 
 @Injectable()
 export class OrderService {
@@ -20,5 +20,9 @@ export class OrderService {
 
   removeItem(item: CartItem) {
     this._cartService.decreaseQty(item);
+  }
+
+  itemsValue(): number {
+    return this._cartService.total();
   }
 }
