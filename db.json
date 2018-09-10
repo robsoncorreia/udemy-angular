@@ -370,5 +370,32 @@
       "restaurantId": "tasty-treats"
     }
   ],
-  "orders": []
+  "orders": [
+    {
+      "address": "Rua Marinalva dos Santos, 23",
+      "number": "23",
+      "optional": "Rua Marinalva dos Santos, 23",
+      "paymentOption": "MON",
+      "orderItems": [
+        {
+          "quantity": 4,
+          "menuId": "cup-cake"
+        }
+      ],
+      "id": 1
+    },
+    {
+      "address": "Rua Marinalva dos Santos, 23",
+      "number": "23",
+      "optional": "Rua Marinalva dos Santos, 23",
+      "paymentOption": "DEB",
+      "orderItems": [
+        {
+          "quantity": 5,
+          "menuId": "capp"
+        }
+      ],
+      "id": 2
+    }
+  ]
 }

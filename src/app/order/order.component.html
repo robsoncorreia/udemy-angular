@@ -64,7 +64,7 @@
 
     <div class="row">
       <div class="col-xs-12">
-        <button [disabled]="!form.valid || cartItems().length === 0" class="btn btn-success pull-right"><i class="fa fa-credit-card"></i> Concluir Pedido
+        <button (click)="checkOut(form.value)" [disabled]="!form.valid || cartItems().length === 0" class="btn btn-success pull-right"><i class="fa fa-credit-card"></i> Concluir Pedido
         </button>
       </div>
     </div>
