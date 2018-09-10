@@ -8,7 +8,7 @@ import { Order } from './order.model';
 
 @Injectable()
 export class OrderService {
-  clear(){
+  clear() {
     this._cartService.clear();
   }
   constructor(private _cartService: ShoppingCartService, private http: Http) {}
