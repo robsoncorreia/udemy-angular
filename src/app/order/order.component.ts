@@ -1,7 +1,7 @@
 import { CartItem } from './../restaurant-detail/shopping-cart/cart-item.model';
 import { OrderService } from './order.service';
 import { RadioOption } from './../shared/radio/radio-option.model';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { Order, OrderItem } from './order.model';
 import { Router } from '@angular/router';
 import { FormGroup, FormBuilder } from '@angular/forms';
@@ -11,6 +11,7 @@ import { FormGroup, FormBuilder } from '@angular/forms';
   templateUrl: './order.component.html'
 })
 export class OrderComponent implements OnInit {
+
   orderForm: FormGroup;
 
   private _delivery = 8;
@@ -29,7 +30,7 @@ export class OrderComponent implements OnInit {
 
   constructor(
     private _orderService: OrderService,
-    private router: Router,
+    private _router: Router,
     private _formBuilder: FormBuilder
   ) {}
 
@@ -68,7 +69,7 @@ export class OrderComponent implements OnInit {
       (item: CartItem) => new OrderItem(item.quantity, item.menuItem.id)
     );
     this._orderService.checkOrder(order).subscribe((orderId: string) => {
-      this.router.navigate(['/order-summary']);
+      this._router.navigate(['/order-summary']);
       console.log(`Compra concluída:  ${orderId}`);
       this._orderService.clear();
     });
