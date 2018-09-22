@@ -1,7 +1,7 @@
 import { CartItem } from './../restaurant-detail/shopping-cart/cart-item.model';
 import { OrderService } from './order.service';
 import { RadioOption } from './../shared/radio/radio-option.model';
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Order, OrderItem } from './order.model';
 import { Router } from '@angular/router';
 import { FormGroup, FormBuilder } from '@angular/forms';
@@ -11,7 +11,6 @@ import { FormGroup, FormBuilder } from '@angular/forms';
   templateUrl: './order.component.html'
 })
 export class OrderComponent implements OnInit {
-
   orderForm: FormGroup;
 
   private _delivery = 8;
@@ -42,7 +41,7 @@ export class OrderComponent implements OnInit {
       address: this._formBuilder.control(''),
       number: this._formBuilder.control(''),
       optionalAddress: this._formBuilder.control(''),
-      paymentOptions: this._formBuilder.control('')
+      paymentOption: this._formBuilder.control('')
     });
   }
 
