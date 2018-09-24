@@ -1,4 +1,4 @@
-import { Validators } from '@angular/forms';
+import { Validators, AbstractControl } from '@angular/forms';
 import { CartItem } from './../restaurant-detail/shopping-cart/cart-item.model';
 import { OrderService } from './order.service';
 import { RadioOption } from './../shared/radio/radio-option.model';
@@ -23,9 +23,11 @@ export class OrderComponent implements OnInit {
   public get delivery() {
     return this._delivery;
   }
+
   public set delivery(value) {
     this._delivery = value;
   }
+
   paymentOptions: RadioOption[] = [
     { label: 'Dinheiro', value: 'MON' },
     { label: 'Cartão de Débito', value: 'DEB' },
@@ -80,9 +82,7 @@ export class OrderComponent implements OnInit {
   remove(item: CartItem) {
     this._orderService.removeItem(item);
   }
-  itemsValue(): number {
-    return this._orderService.itemsValue();
-  }
+
   checkOut(order: Order) {
     order.orderItems = this.cartItems().map(
       (item: CartItem) => new OrderItem(item.quantity, item.menuItem.id)
