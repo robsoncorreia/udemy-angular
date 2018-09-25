@@ -1,4 +1,4 @@
-import { Validators } from '@angular/forms';
+import { Validators, AbstractControl } from '@angular/forms';
 import { CartItem } from './../restaurant-detail/shopping-cart/cart-item.model';
 import { OrderService } from './order.service';
 import { RadioOption } from './../shared/radio/radio-option.model';
@@ -20,17 +20,31 @@ export class OrderComponent implements OnInit {
 
   private _delivery = 8;
 
-  public get delivery() {
-    return this._delivery;
-  }
-  public set delivery(value) {
-    this._delivery = value;
-  }
   paymentOptions: RadioOption[] = [
     { label: 'Dinheiro', value: 'MON' },
     { label: 'Cartão de Débito', value: 'DEB' },
     { label: 'Cartão Refeição', value: 'REF' }
   ];
+
+  static equalsTo(group: AbstractControl): { [key: string]: boolean } {
+    const email = group.get('email');
+    const emailConfirmation = group.get('emailConfirmation');
+    if (!email || !emailConfirmation) {
+      return undefined;
+    }
+    if (email.value !== emailConfirmation.value) {
+      return { emailsNotMatch: true };
+    }
+    return undefined;
+  }
+
+  public get delivery() {
+    return this._delivery;
+  }
+
+  public set delivery(value) {
+    this._delivery = value;
+  }
 
   constructor(
     private _orderService: OrderService,
@@ -39,30 +53,36 @@ export class OrderComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.orderForm = this._formBuilder.group({
-      name: this._formBuilder.control('', [
-        Validators.required,
-        Validators.minLength(5)
-      ]),
-      email: this._formBuilder.control(
-        '',
-        Validators.pattern(this.emailPattern)
-      ),
-      emailConfirmation: this._formBuilder.control(
-        '',
-        Validators.pattern(this.emailPattern)
-      ),
-      address: this._formBuilder.control('', [
-        Validators.required,
-        Validators.minLength(5)
-      ]),
-      number: this._formBuilder.control(
-        '',
-        Validators.pattern(this.numberPatter)
-      ),
-      optionalAddress: this._formBuilder.control(''),
-      paymentOption: this._formBuilder.control('', [Validators.required])
-    });
+    this.orderForm = this._formBuilder.group(
+      {
+        name: this._formBuilder.control('', [
+          Validators.required,
+          Validators.minLength(5)
+        ]),
+        email: this._formBuilder.control(
+          '',
+          Validators.pattern(this.emailPattern)
+        ),
+        emailConfirmation: this._formBuilder.control(
+          '',
+          Validators.pattern(this.emailPattern)
+        ),
+        address: this._formBuilder.control('', [
+          Validators.required,
+          Validators.minLength(5)
+        ]),
+        number: this._formBuilder.control(
+          '',
+          Validators.pattern(this.numberPatter)
+        ),
+        optionalAddress: this._formBuilder.control(''),
+        paymentOption: this._formBuilder.control('', [Validators.required])
+      },
+      { validator: OrderComponent.equalsTo }
+    );
+  }
+  itemsValue(): number {
+    return this._orderService.itemsValue();
   }
 
   cartItems(): CartItem[] {
@@ -80,9 +100,7 @@ export class OrderComponent implements OnInit {
   remove(item: CartItem) {
     this._orderService.removeItem(item);
   }
-  itemsValue(): number {
-    return this._orderService.itemsValue();
-  }
+
   checkOut(order: Order) {
     order.orderItems = this.cartItems().map(
       (item: CartItem) => new OrderItem(item.quantity, item.menuItem.id)
