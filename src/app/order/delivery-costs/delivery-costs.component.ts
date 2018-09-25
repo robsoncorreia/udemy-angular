@@ -10,8 +10,6 @@ export class DeliveryCostsComponent implements OnInit {
   @Input()
   itemsValue: number;
 
-
-
   constructor() {}
 
   ngOnInit() {}
